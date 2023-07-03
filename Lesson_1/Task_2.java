@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Task_2 {
     // простые числа от 1 до 1000
     
