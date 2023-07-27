@@ -11,20 +11,19 @@ public class Main {
         market.addPerson("Иван", Arrays.asList("Видео карта Nvidea RTX 3070 Ti"), 60000);
         market.addPerson("Пётр", Arrays.asList("Зарядка для телефона Type-C", "Жёский диск 2тб", "Пылесос Dyson"), 900 + 5500 + 50000);
         System.out.println("Выбирите тип сортировки заказов: \n1.По колличеству товаров покупателя \n2.По цене товаров покпателя");
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
-        if (choice == 1){
-            Comparator<Person> personComparator = Comparator.comparingInt(person -> person.getProducts().size());
-            market.sortByProductCount(personComparator);
-        } else if (choice == 2) {
-            Comparator<Person> personComparator = Comparator.comparingInt(Person::getPrice);
-            market.sortByPrice(personComparator);
+        try (Scanner scanner = new Scanner(System.in)) {
+            int choice = scanner.nextInt();
+            if (choice == 1){
+                Comparator<Person> personComparator = Comparator.comparingInt(person -> person.getProducts().size());
+                market.sortByProductCount(personComparator);
+            } else if (choice == 2) {
+                Comparator<Person> personComparator = Comparator.comparingInt(Person::getPrice);
+                market.sortByPrice(personComparator);
+            }
+            else {
+                System.out.println("Такого варианта сортировки не существует");
+            }
         }
-        else {
-            System.out.println("Такого варианта сортировки не существует");
-        }
-
-
         for (int i = market.size(); i >= 0; i--) {
             market.update();
 
